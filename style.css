@@ -1,23 +1,32 @@
- {
+/* --- CONFIGURAÇÕES GERAIS --- */
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+html {
+    width: 100%;
+    overflow-x: hidden;
+}
+
 body {
-    background-color: #f9f6f0; /* Tom de fundo suave/palha */
+    background-color: #f9f6f0;
     color: #333333;
     line-height: 1.6;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 /* --- CABEÇALHO --- */
 header {
-    background-color: #7a2626; /* Vermelho terracota cultural */
+    background-color: #7a2626;
     color: #ffffff;
     text-align: center;
     padding: 2.5rem 1rem;
-    border-bottom: 5px solid #e5a93b; /* Detalhe em ouro/amarelo */
+    border-bottom: 5px solid #e5a93b;
+    width: 100%;
 }
 
 header h1 {
@@ -35,12 +44,13 @@ header p {
 .container {
     display: flex;
     max-width: 1200px;
+    width: 100%;
     margin: 2rem auto;
     padding: 0 1rem;
     gap: 2rem;
 }
 
-/* --- MENU LATERAL (TEMAS) --- */
+/* --- MENU LATERAL --- */
 nav {
     flex: 1;
     background-color: #ffffff;
@@ -48,44 +58,13 @@ nav {
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
     max-height: 80vh;
-    overflow-y: auto; /* Adiciona barra de rolagem se a lista for longa */
+    overflow-y: auto;
 }
 
-nav h2 {
-    font-size: 1.2rem;
-    color: #7a2626;
-    margin-bottom: 1rem;
-    border-bottom: 2px solid #e5a93b;
-    padding-bottom: 0.5rem;
-}
-
-nav ul {
-    list-style: none;
-}
-
-nav ul li {
-    margin-bottom: 0.5rem;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: #555555;
-    font-size: 0.95rem;
-    display: block;
-    padding: 0.4rem 0.5rem;
-    border-radius: 4px;
-    transition: 0.2s;
-}
-
-nav ul li a:hover {
-    background-color: #f5eae3;
-    color: #7a2626;
-    font-weight: bold;
-}
-
-/* --- ÁREA DO CONTEÚDO (MAIN) --- */
+/* --- ÁREA DO CONTEÚDO --- */
 main {
     flex: 3;
+    min-width: 0;
     background-color: #ffffff;
     padding: 2.5rem;
     border-radius: 8px;
@@ -113,19 +92,22 @@ main p {
     margin-bottom: 1.2rem;
     font-size: 1.1rem;
     text-align: justify;
+    overflow-wrap: anywhere;
 }
 
-/* --- ESTRUTURA DOS 4 ESPAÇOS DE IMAGENS --- */
+/* --- GALERIA DE IMAGENS --- */
 .galeria-pesquisa {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Cria 2 colunas de tamanho igual */
-    gap: 1.5rem; /* Espaço entre as imagens */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
     margin: 2rem 0;
+    width: 100%;
 }
 
 .item-galeria {
     display: flex;
     flex-direction: column;
+    min-width: 0;
 }
 
 .item-galeria img {
@@ -134,17 +116,19 @@ main p {
     object-fit: cover;
     border-radius: 6px;
     border: 1px solid #dddddd;
+    display: block;
 }
 
 .referencia-imagem {
-    font-size: 0.75rem; /* Tamanho pequenininho para a referência */
+    font-size: 0.75rem;
     color: #666666;
     margin-top: 0.4rem;
     font-style: italic;
-    line-height: 1.2;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
 }
 
-/* --- CRÉDITOS E RODAPÉ --- */
+/* --- CRÉDITOS --- */
 .creditos-aluno {
     margin-top: 3rem;
     padding-top: 1rem;
@@ -153,6 +137,7 @@ main p {
     color: #666666;
 }
 
+/* --- RODAPÉ --- */
 footer {
     text-align: center;
     padding: 1.5rem;
@@ -162,16 +147,101 @@ footer {
     font-size: 0.9rem;
 }
 
-/* --- RESPONSIVIDADE (PARA CELULARES) --- */
+/* --- TABLETS --- */
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
+        align-items: center;
+        padding: 0 1rem;
+        gap: 1rem;
     }
+
+    main {
+        width: 100%;
+        padding: 2rem;
+    }
+
     nav {
+        width: 100%;
         max-height: 250px;
     }
+
+    header h1 {
+        font-size: 1.8rem;
+    }
+
     .galeria-pesquisa {
-        grid-template-columns: 1fr; /* Em telas pequenas, as imagens ficam uma embaixo da outra */
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
+/* --- CELULARES --- */
+@media (max-width: 480px) {
+    header {
+        padding: 1.8rem 1rem;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    header p {
+        font-size: 0.95rem;
+    }
+
+    .container {
+        margin: 1rem auto;
+        padding: 0 12px;
+        width: 100%;
+    }
+
+    main {
+        width: 100%;
+        padding: 1.2rem;
+        text-align: center;
+    }
+
+    main h2 {
+        font-size: 1.6rem;
+        text-align: center;
+    }
+
+    main p {
+        font-size: 1rem;
+        text-align: justify;
+    }
+
+    .galeria-pesquisa {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin: 1.5rem 0;
+    }
+
+    .item-galeria {
+        width: 100%;
+        align-items: center;
+    }
+
+    .item-galeria img {
+        width: 100%;
+        height: auto;
+        max-height: 300px;
+        object-fit: contain;
+    }
+
+    .referencia-imagem {
+        text-align: center;
+        font-size: 0.7rem;
+    }
+
+    .creditos-aluno {
+        text-align: center;
+        font-size: 0.9rem;
+    }
+
+    footer {
+        padding: 1.2rem 0.8rem;
+        font-size: 0.8rem;
+        margin-top: 2rem;
+    }
+}
